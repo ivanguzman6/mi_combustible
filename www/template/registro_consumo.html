@@ -1,24 +1,25 @@
 <ion-view title="Mi Consumo">
     <ion-content padding="true" class="has-header">
-        <form>
-            <label class="item item-input" name="fecha" ng-model="fecha_consumo">
+        <form name="registro_consumo">
+            <label class="item item-input" name="fecha_consumo" >
                 <span class="input-label">Fecha Consumo</span>
-                <input type="date" placeholder="">
+                <input type="date" placeholder="" ng-model="fecha_consumo" min="1900-01-01" max="2100-12-31" required >
             </label>
-            <label class="item item-input" name="kilometraje" ng-model="kilometraje">
+            <label class="item item-input" name="kilometraje" >
                 <span class="input-label">Kilometraje</span>
-                <input type="number" placeholder="Cantidad de km">
+                <input type="number" placeholder="Cantidad de km" ng-model="consumo.kilometraje"  />>
             </label>
-            <label class="item item-input" name="monto_consumo" ng-model="monto_consumo">
+            <label class="item item-input" name="monto_consumo" >
                 <span class="input-label">Monto</span>
-                <input type="number" placeholder="Monto gastado">
+                <input type="number" placeholder="Monto gastado" ng-model="monto_consumo">
             </label>
-            <label class="item item-input" name="galones_consumo" ng-model="galones_consumo">
+            <label class="item item-input" name="galones_consumo" >
                 <span class="input-label">Galones</span>
-                <input type="number" placeholder="Cantidad de Galones">
+                <input type="number" placeholder="Cantidad de Galones" ng-model="galones_consumo">
             </label>
             <button class="button button-positive button-block " ng-click ="salvar()">Salvar</button>
-			<p>Fecha consumo {{kilometraje}}</p>
+			Fecha consumo: {{consumo.kilometraje}}
+			registro_consumo.$valid = {{registro_consumo.$valid}}
         </form>
     </ion-content>
 </ion-view>
