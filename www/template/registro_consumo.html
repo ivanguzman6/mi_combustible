@@ -1,25 +1,41 @@
 <ion-view title="Mi Consumo">
     <ion-content padding="true" class="has-header">
+	 <div>	
         <form name="registro_consumo">
-            <label class="item item-input" name="fecha_consumo" >
+
+			<label class="item item-input" name="fecha_consumo">
                 <span class="input-label">Fecha Consumo</span>
-                <input type="date" placeholder="" ng-model="fecha_consumo" min="1900-01-01" max="2100-12-31" required >
+                <input type="date" class="form-control" placeholder="Cantidad de km" placeholder="" ng-model="fecha_consumo" min="1900-01-01" max="2100-12-31"
+				required
+				ng-class="{ error: registro_consumo.fecha_consumo.$error.required && !registro_consumo.$pristine, warning: registro_consumo.fecha_consumo.$error.fecha_consumo }">
             </label>
-            <label class="item item-input" name="kilometraje" >
+            <label class="item item-input" name="kilometraje">
                 <span class="input-label">Kilometraje</span>
-                <input type="number" placeholder="Cantidad de km" ng-model="consumo.kilometraje"  />>
+                <input type="number" class="form-control" placeholder="Cantidad de km" ng-model="consumo.kilometraje" 
+				min="1" max="999999999"
+				required
+				ng-class="{ error: registro_consumo.fecha_consumo.$error.required && !registro_consumo.$pristine, warning: registro_consumo.fecha_consumo.$error.fecha_consumo }">
             </label>
             <label class="item item-input" name="monto_consumo" >
                 <span class="input-label">Monto</span>
-                <input type="number" placeholder="Monto gastado" ng-model="monto_consumo">
+                <input type="number" class="form-control" placeholder="Monto gastado" ng-model="monto_consumo" 
+				required
+				ng-class="{ error: registro_consumo.monto_consumo.$error.required && !registro_consumo.$pristine, warning: registro_consumo.monto_consumo.$error.monto_consumo }">
             </label>
             <label class="item item-input" name="galones_consumo" >
                 <span class="input-label">Galones</span>
-                <input type="number" placeholder="Cantidad de Galones" ng-model="galones_consumo">
+                <input type="number" class="form-control"  placeholder="Cantidad de Galones" ng-model="galones_consumo" 
+				required
+				ng-class="{ error: registro_consumo.galones_consumo.$error.required && !registro_consumo.$pristine, warning: registro_consumo.galones_consumo.$error.galones_consumo }">
             </label>
-            <button class="button button-positive button-block " ng-click ="salvar()">Salvar</button>
+			<label class="item item-input" name="precio" >
+				<span class="input-label">Precio</span>
+                <input type="number" class="form-control"  placeholder="Cantidad de Galones" ng-model="precio_galon"  value={{parseFloat(consumo.monto_consumo)+parseFloat(consumo.galones_consumo)}} readonly></input>
+            </label>
+            <button class="button button-positive button-block " ng-click ="salvar()" ng-disabled="!registro_consumo.$valid">Salvar</button>
 			Fecha consumo: {{consumo.kilometraje}}
 			registro_consumo.$valid = {{registro_consumo.$valid}}
         </form>
+	</div>
     </ion-content>
 </ion-view>
