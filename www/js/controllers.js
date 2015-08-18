@@ -1,6 +1,6 @@
-angular.module('mi_consumo.controllers', [])
+angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
-.controller('registro_consumoCtrl', function($scope,$state) 
+.controller('registro_consumoCtrl', function($scope,$state,$localstorage) 
 {
 	$scope.consumo = {
 		'fecha_consumo' : "",
@@ -10,7 +10,7 @@ angular.module('mi_consumo.controllers', [])
 		'precio_galon' : 0
 	  };
   
-	
+	$scope.consumo = $localstorage.getObject('consumo');
 	
 	
 	$scope.parseFloat = function(value)
@@ -39,7 +39,9 @@ angular.module('mi_consumo.controllers', [])
 		// {
 		  // alert("Datos Salvados <"+$scope.consumo.kilometraje+">");
 		// };
+		$localstorage.setObject('consumo',$scope.consumo);
 		alert("Datos Salvados <"+$scope.consumo.kilometraje+">");
+		
 	};
 	
 	$scope.redondear = function (number, precision)
@@ -48,6 +50,27 @@ angular.module('mi_consumo.controllers', [])
 		var multiplier = Math.pow(10, precision);
 		return (Math.round(number * multiplier) / multiplier);
 	};
-
+	
 })
+
+/*$localstorage.setObject('consumo',$scope.consumo);*/
+	
+	 /* .run(function($,$localstorage) {
+
+		$localstorage.set('name', 'Max');
+		console.log($localstorage.get('name'));
+		$localstorage.setObject('consumo',$scope.consumo);
+		
+		 $localstorage.setObject('consumo', {
+				name: 'Thoughts',
+				text: 'Today was a good day'
+			}); 
+
+		$scope.consumo = $localstorage.getObject('consumo');
+		console.log(consumo);
+	});  */
+
+
+
+
 
