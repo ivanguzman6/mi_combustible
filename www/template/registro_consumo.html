@@ -34,6 +34,11 @@
             </label>
             <button class="button button-positive button-block " ng-click ="salvar()" ng-disabled="!registro_consumo.$valid">Salvar</button>
 			  registro_consumo.$valid = {{registro_consumo.$valid}}
+			  
+			 <li ng-repeat="item in items.data" id="item{{item.id}}">
+				<a href="#">{{item.title}}</a>  <a ng-click="deleteItem($index)" class="delete-item">x</a>
+			</li>  
+			  
         </form>
 	</div>
     </ion-content>

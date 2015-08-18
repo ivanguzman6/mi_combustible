@@ -3,14 +3,14 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 .controller('registro_consumoCtrl', function($scope,$state,$localstorage) 
 {
 	$scope.consumo = {
-		'fecha_consumo' : "",
+		'fecha_consumo' : "01-01-1900",
 		'kilometraje' : 0,
 		'monto_consumo': 0,
 		'galones_consumo' : 0,
 		'precio_galon' : 0
-	  };
+	}; 
   
-	$scope.consumo = $localstorage.getObject('consumo');
+	/*$scope.consumo = $localstorage.getObject('consumo');*/
 	
 	
 	$scope.parseFloat = function(value)
@@ -39,16 +39,24 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 		// {
 		  // alert("Datos Salvados <"+$scope.consumo.kilometraje+">");
 		// };
-		$localstorage.setObject('consumo',$scope.consumo);
+		//$localstorage.setObject('consumo',$scope.consumo);
 		alert("Datos Salvados <"+$scope.consumo.kilometraje+">");
-		$scope.consumo.push({
-            'fecha_consumo' : "",
-		'kilometraje' : 0,
-		'monto_consumo': 0,
-		'galones_consumo' : 0,
-		'precio_galon' : 0
-		});
 		
+		var consumo2={
+			'fecha_consumo' : "01-01-1900",
+			'kilometraje' : 0,
+			'monto_consumo': 0,
+			'galones_consumo' : 0,
+			'precio_galon' : 0
+		};
+	  
+		$scope.consumo.push(consumo2);
+		$localstorage.setObject('consumo',$scope.consumo);
+		
+		items.data.push({
+            id: $scope.items.data.length + 1,
+            title: $scope.newItemName
+        });
 	};
 	
 	$scope.redondear = function (number, precision)
