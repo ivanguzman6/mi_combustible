@@ -41,6 +41,13 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 		// };
 		$localstorage.setObject('consumo',$scope.consumo);
 		alert("Datos Salvados <"+$scope.consumo.kilometraje+">");
+		$scope.consumo.push({
+            'fecha_consumo' : "",
+		'kilometraje' : 0,
+		'monto_consumo': 0,
+		'galones_consumo' : 0,
+		'precio_galon' : 0
+		});
 		
 	};
 	
