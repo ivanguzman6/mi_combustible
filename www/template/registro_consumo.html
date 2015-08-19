@@ -34,6 +34,7 @@
             </label>
             <button class="button button-positive button-block " ng-click ="salvar()" ng-disabled="!registro_consumo.$valid">Salvar</button>
 			  registro_consumo.$valid = {{registro_consumo.$valid}}
+<<<<<<< HEAD
 			  Kilometraje{{consumo.kilometraje}}
 			  Consumo = {{list_consumo}}
 			 <ul class="list" ng-repeat="item in lista_consumo" id="item{{lista_consumo.kilometraje}}">
@@ -42,6 +43,12 @@
 				</li>
 			</ul>
 			 
+=======
+			  
+			 <li ng-repeat="item in consumo" id="item{{consumo.fecha}}">
+				<a href="#">{{consumo.kilometraje}}</a>  <a>x</a>
+			</li>  
+>>>>>>> origin/master
 			  
         </form>
 	</div>
