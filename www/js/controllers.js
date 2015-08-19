@@ -1,16 +1,34 @@
 angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
-.controller('registro_consumoCtrl', function($scope,$state,$localstorage) 
+.controller('registro_consumoCtrl', function($scope,$state,$localstorage,$window) 
 {
+
+	
+	$scope.lista_consumo = [];
+	
 	$scope.consumo = {
-		'fecha_consumo' : "01-01-1900",
+		'fecha_consumo' : "",
 		'kilometraje' : 0,
 		'monto_consumo': 0,
 		'galones_consumo' : 0,
 		'precio_galon' : 0
-	}; 
-  
-	/*$scope.consumo = $localstorage.getObject('consumo');*/
+	};  
+	/*$window.localStorage.clear();*/
+	if (window.localstorage.getItem('consumo') != null) 
+	{
+		$scope.consumo = JSON.parse(localStorage["consumo"]);
+	}
+	
+	
+	/* {
+		'fecha_consumo' : "",
+		'kilometraje' : 0,
+		'monto_consumo': 0,
+		'galones_consumo' : 0,
+		'precio_galon' : 0
+	};  */
+ 
+	$scope.lista_consumo = $localstorage.getObject('consumo');
 	
 	
 	$scope.parseFloat = function(value)
@@ -39,24 +57,32 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 		// {
 		  // alert("Datos Salvados <"+$scope.consumo.kilometraje+">");
 		// };
-		//$localstorage.setObject('consumo',$scope.consumo);
-		alert("Datos Salvados <"+$scope.consumo.kilometraje+">");
+		alert("Kilometraje= "+$scope.consumo.kilometraje);
+		$scope.lista_consumo.push({
+			fecha_consumo : $scope.consumo.fecha_consumo,
+			kilometraje : $scope.consumo.kilometraje,
+			monto_consumo: $scope.consumo.monto_consumo,
+			galones_consumo : $scope.consumo.galones_consumo,
+			precio_galon : $scope.consumo.precio_galon});
+	
 		
-		var consumo2={
-			'fecha_consumo' : "01-01-1900",
+		$localstorage.setObject('consumo',JSON.stringify($scope.lista_consumo));
+		alert("Datos Salvados ");
+		
+		/* var consumo2={
+			'fecha_consumo' : "",
 			'kilometraje' : 0,
 			'monto_consumo': 0,
 			'galones_consumo' : 0,
 			'precio_galon' : 0
-		};
+		}; */
 	  
-		$scope.consumo.push(consumo2);
-		$localstorage.setObject('consumo',$scope.consumo);
+		/*  */
 		
-		items.data.push({
+		/* items.data.push({
             id: $scope.items.data.length + 1,
             title: $scope.newItemName
-        });
+        }); */
 	};
 	
 	$scope.redondear = function (number, precision)
