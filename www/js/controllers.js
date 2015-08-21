@@ -2,8 +2,6 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
 .controller('registro_consumoCtrl', function($scope,$state,$localstorage,$window) 
 {
-<<<<<<< HEAD
-
 	
 	$scope.lista_consumo = [];
 	
@@ -15,32 +13,25 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 		'precio_galon' : 0
 	};  
 	/*$window.localStorage.clear();*/
-	if (window.localstorage.getItem('consumo') != null) 
+	if (localstorage.getItem("consumo") != null) 
 	{
 		$scope.consumo = JSON.parse(localStorage["consumo"]);
 	}
 	
 	
 	/* {
-=======
+
 	$scope.consumo = [{
->>>>>>> origin/master
 		'fecha_consumo' : "",
 		'kilometraje' : 0,
 		'monto_consumo': 0,
 		'galones_consumo' : 0,
 		'precio_galon' : 0
-<<<<<<< HEAD
 	};  */
  
-	$scope.lista_consumo = $localstorage.getObject('consumo');
-=======
-	}]; 
-  
-	$scope.consumo = $localstorage.getObject('consumo');
->>>>>>> origin/master
-	
-	
+	// $scope.lista_consumo = $localstorage.getObject('consumo');
+ 
+
 	$scope.parseFloat = function(value)
     {
         return parseFloat(value);
@@ -76,14 +67,11 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 			precio_galon : $scope.consumo.precio_galon});
 	
 		
-<<<<<<< HEAD
 		$localstorage.setObject('consumo',JSON.stringify($scope.lista_consumo));
 		alert("Datos Salvados ");
 		
 		/* var consumo2={
-=======
 		var consumo2={
->>>>>>> origin/master
 			'fecha_consumo' : "",
 			'kilometraje' : 0,
 			'monto_consumo': 0,
@@ -91,14 +79,12 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 			'precio_galon' : 0
 		}; */
 	  
-<<<<<<< HEAD
 		/*  */
 		
 		/* items.data.push({
             id: $scope.items.data.length + 1,
             title: $scope.newItemName
         }); */
-=======
 		$scope.consumo.push({
 			fecha_consumo : "",
 			kilometraje : 0,
@@ -108,7 +94,6 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 		});
 		
 		/* $localstorage.setObject('consumo',$scope.consumo);*/
->>>>>>> origin/master
 	};
 	
 	$scope.redondear = function (number, precision)
