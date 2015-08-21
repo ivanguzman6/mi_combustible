@@ -13,7 +13,7 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 		'precio_galon' : 0
 	};  
 	/*$window.localStorage.clear();*/
-	if (localstorage.getItem("consumo") != null) 
+	if (localStorage.getItem("consumo") != null) 
 	{
 		$scope.consumo = JSON.parse(localStorage["consumo"]);
 	}
