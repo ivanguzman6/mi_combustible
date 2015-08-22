@@ -1,0 +1,19 @@
+<ion-view title="Historial de Consumo">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-list>
+		<!-- <ul class="list" ng-repeat="item in lista_consumo" id="item{{lista_consumo.kilometraje}}">
+			<li class="item">
+				Kilometraje en lista: {{item.kilometraje}}
+			</li>
+		</ul> -->
+		<ul class="list" ng-repeat="item in lista_consumo" id="item{{lista_consumo.kilometraje}} track by $index">
+			<li class="item">
+				Kilometraje en lista: {{item.kilometraje}}
+			</li>
+		</ul>
+    </ion-list>
+  </ion-content>
+</ion-view>

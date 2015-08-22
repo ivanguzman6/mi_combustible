@@ -31,16 +31,44 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
 	// Set up the various states which the app can be in.
 	// Each state's controller can be found in controllers.js
 	$stateProvider
-
-	.state ('registro_consumo', {
+	
+	.state('app', {
+      url: "/app",
+      abstract: true,
+      templateUrl: "template/menu.html",
+      controller: 'registro_consumoCtrl'
+    })
+	
+	.state('app.registro_consumo', {
+      url: "/registro_consumo",
+      views: {
+        'menuContent' :{
+          templateUrl: "template/registro_consumo.html",
+          controller: 'registro_consumoCtrl'
+        }
+      }
+	 }) 
+	 
+	.state('app.historial_consumo', {
+      url: "/historial_consumo",
+      views: {
+        'menuContent' :{
+          templateUrl: "template/historial_consumo.html",
+          controller: 'registro_consumoCtrl'
+        }
+     }
+	})
+	/* .state ('registro_consumo', {
 		url:"/registro_consumo" ,
 		templateUrl:'template/registro_consumo.html', 
 		controller:'registro_consumoCtrl'
-	})
+	});
+		*/
+	
 
 	
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('registro_consumo');
+	$urlRouterProvider.otherwise('/app/registro_consumo');
   
   
 });
