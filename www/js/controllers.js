@@ -1,9 +1,12 @@
 angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
 
-.controller('registro_consumoCtrl', function($scope,$state,$localstorage,$window) 
+.controller('registro_consumoCtrl', function($scope,$state,$localstorage,$window,$stateParams) 
 {
-	
+
+	if($stateParams.id!=null)
+		alert("id="+$stateParams.id);
+		
 	$scope.lista_consumo = [];
 	
 	$scope.consumo = {
@@ -71,6 +74,20 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 	
 		/*$scope.lista_consumo.push($scope.consumo);*/
 		
+		$scope.insert = function(firstname, lastname) {
+			var query = "INSERT INTO consumo (id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon) VALUES (?,?,?,?,?,?)";
+			$cordovaSQLite.execute(db, query, [	$scope.consumo.id,
+												$scope.consumo.fecha_consumo,
+												$scope.consumo.kilometraje,
+												$scope.consumo.monto_consumo,
+												$scope.consumo.galones_consumo,
+												$scope.consumo.precio_galon]).then(function(res) {
+			alert("Datos Insertado. ID="+$scope.consumo.id);	
+			}, function (err) {
+				alert("Error: "+err);
+			});
+		}
+
 	};
 	
 	$scope.redondear = function (number, precision)
@@ -82,10 +99,46 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 	
 })
 
-.controller('historial_consumoCtrl', function($scope,$state,$localstorage,$window) 
+.controller('historial_consumoCtrl', function($scope,$state) 
 {
-
+	$scope.editar_registro = function(id) 
+	{
+		$state.go('app.editar_consumo',{id: id})
+		
+	};
 })
+
+.controller('editar_consumoCtrl', function($scope,$state,$stateParams) 
+{
+	$scope.lista_consumo = [];
+	
+	$scope.select = function(id) {
+		var query = "SELECT id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon FROM consumo WHERE id = ?";
+		$cordovaSQLite.execute(db, query, [id]).then(function(res) {
+			if(res.rows.length > 0) {
+				alert("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
+			} else {
+				alert("No results found");
+			}
+		}, function (err) {
+			alert("Error: "+err);
+		});
+	};
+		
+	$scope.consumo = {
+		'id' : 0,
+		'fecha_consumo' : "",
+		'kilometraje' : 0,
+		'monto_consumo': 0,
+		'galones_consumo' : 0,
+		'precio_galon' : 0
+	};  
+	
+	
+})
+
+
+
 
 
 

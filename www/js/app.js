@@ -1,3 +1,5 @@
+
+
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -5,9 +7,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.services'])
 
-.run(function($ionicPlatform) {
+var db = null;
+ 
+angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.services','ngCordova'])
+.run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,6 +24,10 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+	
+	db = $cordovaSQLite.openDB("my.db");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS consumos (id integer primary key, fecha_consumo date, kilometraje integer,monto_consumo numeric,galones_consumo numeric,precio_galon numeric )");
+	
   });
 })
 	  
@@ -54,10 +62,20 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
       views: {
         'menuContent' :{
           templateUrl: "template/historial_consumo.html",
-          controller: 'registro_consumoCtrl'
+          controller: 'historial_consumoCtrl'
         }
      }
 	})
+	
+	.state('app.editar_consumo', {
+      url: "/editar_consumo",
+      views: {
+        'menuContent' :{
+          templateUrl: "template/editar_consumo.html",
+          controller: 'editar_consumoCtrl'
+        }
+     }
+	});
 	/* .state ('registro_consumo', {
 		url:"/registro_consumo" ,
 		templateUrl:'template/registro_consumo.html', 

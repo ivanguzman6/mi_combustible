@@ -9,18 +9,20 @@
 				Kilometraje en lista: {{item.kilometraje}}
 			</li>
 		</ul> -->
-		<ul class="list" ng-repeat="item in lista_consumo" id="item{{lista_consumo.kilometraje}} track by $index">
+		<ul class="list" ng-repeat="item in lista_consumo" id="item{{lista_consumo.id}} track by $index">
 			<li class="item">
 				<div class="item item-button-right">
+					<p>ID: <span style="color:blue">{{item.id}}</span></p>
 					<p>Fecha: <span style="color:blue">{{item.fecha_consumo|date:'dd/MM/yyyy'}}</span></p>
-					<p>Monto <span style="color:blue">{{item.monto_consumo}}</span></p>
-					<p>Galones {{item.galones_consumo}}</p>
-					<p>Precio {{item.precio_galon}}</p>
+					<p>Kilometraje: <span style="color:blue">{{item.kilometraje}}</span></p>
+					<p>Monto: <span style="color:blue">{{item.monto_consumo|currency : 'RD '}}</span></p>
+					<p>Galones: <span style="color:blue">{{item.galones_consumo}}</span></p>
+					<p>Precio: <span style="color:blue">{{item.precio_galon|currency : 'RD '}}</span></p>
 					<div class="buttons">
-						<button class="button button-positive">
+						<button class="button button-positive" ng-click ="editar_registro(item.id)">
 						  <i class="icon ion-edit"></i>
 						</button>
-						<button class="button button-assertive">
+						<button class="button button-assertive"  ng-click ="borrar_registro()">
 						  <i class="icon ion-trash-b"></i>
 						</button>
 					</div>
