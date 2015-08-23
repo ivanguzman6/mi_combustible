@@ -11,7 +11,20 @@
 		</ul> -->
 		<ul class="list" ng-repeat="item in lista_consumo" id="item{{lista_consumo.kilometraje}} track by $index">
 			<li class="item">
-				Kilometraje en lista: {{item.kilometraje}}
+				<div class="item item-button-right">
+					<p>Fecha: <span style="color:blue">{{item.fecha_consumo|date:'dd/MM/yyyy'}}</span></p>
+					<p>Monto <span style="color:blue">{{item.monto_consumo}}</span></p>
+					<p>Galones {{item.galones_consumo}}</p>
+					<p>Precio {{item.precio_galon}}</p>
+					<div class="buttons">
+						<button class="button button-positive">
+						  <i class="icon ion-edit"></i>
+						</button>
+						<button class="button button-assertive">
+						  <i class="icon ion-trash-b"></i>
+						</button>
+					</div>
+				</div>
 			</li>
 		</ul>
     </ion-list>
