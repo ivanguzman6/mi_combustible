@@ -95,6 +95,7 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 					'galones_consumo' : res.rows.item(0).galones_consumo,
 					'precio_galon' : res.rows.item(0).precio_galon
 				};  
+				scope.lista_consumo.push($scope.consumo)
 			} 
 			else 
 			{
@@ -107,6 +108,7 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 					'galones_consumo' : 0,
 					'precio_galon' : 0
 				};  
+				scope.lista_consumo.push($scope.consumo)
 			}
 		}, function (err) {
 			alert("Error: "+err);
@@ -156,19 +158,31 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 {
 	$scope.lista_consumo = [];
 	
-	var query = "SELECT id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon FROM consumo WHERE id = ?";
-	$cordovaSQLite.execute(db, query, [ID]).then(function(res) {
+	var query = "SELECT id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon FROM consumos";
+	$cordovaSQLite.execute(db, query).then(function(res) {
 		if(res.rows.length > 0) 
 		{
-			$scope.consumo = 
+			for(var i = 0; i < res.rows.length; i++) 
 			{
-				'id' : res.rows.item(0).id,
-				'fecha_consumo' : res.rows.item(0).fecha_consumo,
-				'kilometraje' : res.rows.item(0).kilometraje,
-				'monto_consumo': res.rows.item(0).monto_consumo,
-				'galones_consumo' : res.rows.item(0).galones_consumo,
-				'precio_galon' : res.rows.item(0).precio_galon
-			};  
+				$scope.consumo = 
+				{
+					'id' : res.rows.item(i).id,
+					'fecha_consumo' : res.rows.item(i).fecha_consumo,
+					'kilometraje' : res.rows.item(i).kilometraje,
+					'monto_consumo': res.rows.item(i).monto_consumo,
+					'galones_consumo' : res.rows.item(i).galones_consumo,
+					'precio_galon' : res.rows.item(i).precio_galon
+				};  
+				$scope.lista_consumo.push(
+				{
+					id: count,
+					fecha_consumo : $scope.consumo.fecha_consumo,
+					kilometraje : $scope.consumo.kilometraje,
+					monto_consumo: $scope.consumo.monto_consumo,
+					galones_consumo : $scope.consumo.galones_consumo,
+					precio_galon : $scope.consumo.precio_galon
+				});
+			}
 		} 
 		else 
 		{
@@ -180,25 +194,28 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 				'monto_consumo': 0,
 				'galones_consumo' : 0,
 				'precio_galon' : 0
-			};  
+			};
+			$scope.lista_consumo.push(
+			{
+				id: count,
+				fecha_consumo : $scope.consumo.fecha_consumo,
+				kilometraje : $scope.consumo.kilometraje,
+				monto_consumo: $scope.consumo.monto_consumo,
+				galones_consumo : $scope.consumo.galones_consumo,
+				precio_galon : $scope.consumo.precio_galon
+			});			
 		}
 	}, function (err) {
 		alert("Error: "+err);
 	});
 	
 	
-	$scope.lista_consumo.push({
-	id: count,
-	fecha_consumo : $scope.consumo.fecha_consumo,
-	kilometraje : $scope.consumo.kilometraje,
-	monto_consumo: $scope.consumo.monto_consumo,
-	galones_consumo : $scope.consumo.galones_consumo,
-	precio_galon : $scope.consumo.precio_galon});
+	
 	
 	$scope.editar_registro = function(id) 
 	{
 		$state.go('app.editar_consumo',{id: id})
-	;
+	};
 })
 
 .controller('editar_consumoCtrl', function($scope,$state,$stateParams) 
