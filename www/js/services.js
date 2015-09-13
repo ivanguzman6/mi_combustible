@@ -72,26 +72,26 @@ angular.module('ionic.utils', [])
       });
   }
 
-  self.get = function(memberId) {
-    var parameters = [memberId];
+  self.get = function(consumo_id) {
+    var parameters = [consumo_id];
     return DBA.query("SELECT id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon FROM consumos WHERE id = (?)", parameters)
       .then(function(result) {
         return DBA.getById(result);
       });
   }
 
-  self.add = function(member) {
-    var parameters = [member.id, member.name];
+  self.add = function(consumo) {
+    var parameters = [consumo.id, consumo.fecha_consumo,consumo.kilometraje,consumo.monto_consumo,consumo.galones_consumo,consumo.precio_galon];
     return DBA.query("INSERT INTO consumos (id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon) VALUES (?,?,?,?,?,?)", parameters);
   }
 
-  self.remove = function(member) {
-    var parameters = [member.id];
+  self.remove = function(consumo) {
+    var parameters = [consumo.id];
     return DBA.query("DELETE FROM consumos WHERE id = (?)", parameters);
   }
 
-  self.update = function(origMember, editMember) {
-    var parameters = [editMember.id, editMember.name, origMember.id];
+  self.update = function(consumo_original, consumo_editado) {
+    var parameters = [consumo_editado.fecha_consumo, consumo_editado.kilometraje, consumo_editado.monto_consumo,consumo_editado.galones_consumo,consumo_editado.precio_galon, consumo_original.id];
     return DBA.query("UPDATE consumos SET fecha_consumo=(?),kilometraje=(?),monto_consumo=(?),galones_consumo=(?),precio_galon=(?) WHERE id = (?)", parameters);
   }
 

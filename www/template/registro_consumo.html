@@ -35,7 +35,7 @@
 				<span class="input-label">Precio</span>
                 <input type="number" class="form-control"  placeholder="Cantidad de Galones" ng-model="consumo.precio_galon" ng-value="consumo.precio_galon | number:2"></input>
             </label>
-            <button class="button button-positive button-block " ng-click ="crear_consumo()" ng-disabled="!registro_consumo.$valid">Salvar</button>
+            <button class="button button-positive button-block " ng-click ="crear_consumo(consumo)" ng-disabled="!registro_consumo.$valid">Salvar</button>
 			  <!-- registro_consumo.$valid = {{registro_consumo.$valid}} -->
 
 			<!--  <ul class="list" ng-repeat="item in lista_consumo" id="item{{lista_consumo.kilometraje}}">

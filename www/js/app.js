@@ -49,8 +49,8 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
 	.state('app', {
       url: "/app",
       abstract: true,
-      templateUrl: "template/menu.html",
-      controller: 'registro_consumoCtrl'
+       templateUrl: "template/menu.html",
+       controller: 'registro_consumoCtrl'
     })
 	
 	.state('app.registro_consumo', {
