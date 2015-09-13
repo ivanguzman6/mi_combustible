@@ -81,8 +81,8 @@ angular.module('ionic.utils', [])
   }
 
   self.add = function(consumo) {
-    var parameters = [consumo.id, consumo.fecha_consumo,consumo.kilometraje,consumo.monto_consumo,consumo.galones_consumo,consumo.precio_galon];
-    return DBA.query("INSERT INTO consumos (id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon) VALUES (?,?,?,?,?,?)", parameters);
+    var parameters = [consumo.fecha_consumo,consumo.kilometraje,consumo.monto_consumo,consumo.galones_consumo,consumo.precio_galon];
+    return DBA.query("INSERT INTO consumos (fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon) VALUES (?,?,?,?,?)", parameters);
   }
 
   self.remove = function(consumo) {

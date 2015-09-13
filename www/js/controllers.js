@@ -75,7 +75,9 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
 .controller('historial_consumoCtrl', function($scope,consumos) 
 {
-
+	$scope.consumos = [];
+	$scope.consumos = null;
+	
 	$scope.actualizar_consumo = function() 
 	{
 		consumos.all().then(function(consumo)
