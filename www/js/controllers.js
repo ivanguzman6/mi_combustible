@@ -31,12 +31,12 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
 	$scope.crear_consumo = function(consumo) 
 	{
-		/*autoincrementar el id*/
+		alert("fecha="+consumo.fecha_consumo);
 		consumos.add(consumo);
 		$scope.actualizar_consumo();
 	};
 
-	$scope.qitar_consumo = function(consumo) 
+	$scope.quitar_consumo = function(consumo) 
 	{
 		consumos.remove(consumo);
 		$scope.actualizar_consumo();
@@ -84,13 +84,20 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 		{
 			  $scope.consumos = consumo;
 		});
-	}
+	};
 	
 	$scope.actualizar_consumo();
 	
 	$scope.editar_registro = function(id) 
 	{
 		$state.go('app.editar_consumo',{id: id})
+	};
+	
+	$scope.quitar_consumo = function(consumo) 
+	{
+		alert("ID a borrar="+consumo.id);
+		consumos.remove(consumo);
+		$scope.actualizar_consumo();
 	};
 	
 	

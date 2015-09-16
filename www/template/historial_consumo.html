@@ -4,11 +4,13 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
+	
 		<!-- <ul class="list" ng-repeat="item in lista_consumo" id="item{{lista_consumo.kilometraje}}">
 			<li class="item">
 				Kilometraje en lista: {{item.kilometraje}}
 			</li>
 		</ul> -->
+	
 		<ul class="list" ng-repeat="item in consumos" id="item{{consumos.id}} track by $index">
 			<li class="item">
 				<div class="item item-button-right">
@@ -18,11 +20,12 @@
 					<p>Monto: <span style="color:blue">{{item.monto_consumo|currency : 'RD '}}</span></p>
 					<p>Galones: <span style="color:blue">{{item.galones_consumo}}</span></p>
 					<p>Precio: <span style="color:blue">{{item.precio_galon|currency : 'RD '}}</span></p>
+					
 					<div class="buttons">
 						<button class="button button-positive" ng-click ="editar_registro(item.id)">
 						  <i class="icon ion-edit"></i>
 						</button>
-						<button class="button button-assertive"  ng-click ="borrar_registro()">
+						<button class="button button-assertive"  ng-click ="quitar_consumo(item)">
 						  <i class="icon ion-trash-b"></i>
 						</button>
 					</div>

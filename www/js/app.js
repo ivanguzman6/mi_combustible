@@ -23,11 +23,13 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
 	
     if(window.cordova) 
 	{
-      // App syntax
-      db = $cordovaSQLite.openDB("consumo.db");
-    } else {
-      // Ionic serve syntax
-      db = window.openDatabase("consumo.db", "1.0", "My app", -1);
+		// App syntax
+		db = $cordovaSQLite.openDB("consumo.db");
+    } 
+	else 
+	{
+		// Ionic serve syntax
+		db = window.openDatabase("consumo.db", "1.0", "My app", -1);
     }
 
 	
