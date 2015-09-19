@@ -12,7 +12,9 @@ var db = null;
  
 angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.services','ngCordova'])
 .run(function($ionicPlatform, $cordovaSQLite) {
-  $ionicPlatform.ready(function() {
+  
+  $ionicPlatform.ready(function() 
+  {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -24,12 +26,12 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
     if(window.cordova) 
 	{
 		// App syntax
-		db = $cordovaSQLite.openDB("consumo.db");
+		db = $cordovaSQLite.openDB({ name: "consumo.db"});
     } 
 	else 
 	{
-		// Ionic serve syntax
-		db = window.openDatabase("consumo.db", "1.0", "My app", -1);
+		//Ionic serve syntax
+		db = window.openDatabase("consumo.db", "1.0", "My app", 1);
     }
 
 	

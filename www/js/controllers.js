@@ -86,6 +86,7 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 		});
 	};
 	
+	//el error esta aqui
 	$scope.actualizar_consumo();
 	
 	$scope.editar_registro = function(id) 

@@ -23,17 +23,19 @@ angular.module('ionic.utils', [])
 
 .factory('DBA', function($cordovaSQLite, $q, $ionicPlatform) {
   var self = this;
-
+	
   // Handle query's and potential errors
   self.query = function (query, parameters) {
     parameters = parameters || [];
     var q = $q.defer();
-
+	
     $ionicPlatform.ready(function () {
       $cordovaSQLite.execute(db, query, parameters)
         .then(function (result) {
+		
           q.resolve(result);
         }, function (error) {
+		  alert("Error");
           console.warn('Se produjo un error');
           console.warn(error);
           q.reject(error);
@@ -45,7 +47,6 @@ angular.module('ionic.utils', [])
   // Proces a result set
   self.getAll = function(result) {
     var output = [];
-
     for (var i = 0; i < result.rows.length; i++) {
       output.push(result.rows.item(i));
     }
@@ -66,8 +67,10 @@ angular.module('ionic.utils', [])
   var self = this;
 
   self.all = function() {
-    return DBA.query("SELECT id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon FROM consumos")
+	 var parameters = [0];
+    return DBA.query("SELECT id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon FROM consumos where id>= (?)",parameters)
       .then(function(result){
+	  console.warn('setall');
         return DBA.getAll(result);
       });
   }
