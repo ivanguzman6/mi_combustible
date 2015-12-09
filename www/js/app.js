@@ -8,7 +8,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-var db = null;
+var db;
  
 angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.services','ngCordova'])
 .run(function($ionicPlatform, $cordovaSQLite) {
@@ -25,8 +25,10 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
 	
     if(window.cordova) 
 	{
+		alert("1");
 		// App syntax
-		db = $cordovaSQLite.openDB({ name: "consumo.db"});
+		db = $cordovaSQLite.openDB("consumo.db");
+		alert("2");
     } 
 	else 
 	{
