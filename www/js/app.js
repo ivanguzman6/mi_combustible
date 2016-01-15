@@ -8,41 +8,59 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-var db;
+var db=null;
  
 angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.services','ngCordova'])
-.run(function($ionicPlatform, $cordovaSQLite) {
-  
+.run(function($ionicPlatform, $cordovaSQLite,$ionicLoading, $location, $ionicHistory) {
+   $ionicHistory.nextViewOptions({
+        disableAnimate: true,
+        disableBack: true
+    });
+	
   $ionicPlatform.ready(function() 
   {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+	
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
 
     }
 	
-    if(window.cordova) 
-	{
+    //if(window.cordova) 
+	/*{
+		window.plugins.sqlDB.copy("consumo.db", function() {
+                db = $cordovaSQLite.openDB("consumo.db");
+                $location.path("/consumo");
+                $ionicLoading.hide();
+            }, function(error) {
+                console.error("There was an error copying the database: " + error);
+                db = $cordovaSQLite.openDB("consumo.db");
+                $location.path("/consumo");
+                $ionicLoading.hide();
+            });
+			
+			
 		alert("1");
 		// App syntax
-		db = $cordovaSQLite.openDB("consumo.db");
-		alert("2");
-    } 
-	else 
-	{
+		db = $cordovaSQLite.openDB({name:"consumo.db"});
+		alert("2");*/
+	
+    //} 
+	//else 
+	//{*/
 		//Ionic serve syntax
-		db = window.openDatabase("consumo.db", "1.0", "My app", 1);
-    }
+		db = openDatabase("consumo.db", "1.0", "My app", 1);
+   // }
 
 	
 	//db = $cordovaSQLite.openDB("consumo.db");
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS consumos (id integer primary key, fecha_consumo date, kilometraje integer,monto_consumo numeric,galones_consumo numeric,precio_galon numeric )");
 	
-  }, function (err) {
-            console.error(err);
-        });
+  }, function (error) {
+		console.log(error);
+	});
 })
 	  
 
@@ -86,7 +104,8 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
       views: {
         'menuContent' :{
           templateUrl: "template/editar_consumo.html",
-          controller: 'editar_consumoCtrl'
+          controller: 'editar_consumoCtrl',
+		  params: {'pid': null}
         }
      }
 	});

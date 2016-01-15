@@ -73,7 +73,7 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
 
 
-.controller('historial_consumoCtrl', function($scope,consumos) 
+.controller('historial_consumoCtrl', function($scope,consumos,$state) 
 {
 	$scope.consumos = [];
 	$scope.consumos = null;
@@ -86,12 +86,10 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 		});
 	};
 	
-	//el error esta aqui
 	$scope.actualizar_consumo();
 	
-	$scope.editar_registro = function(id) 
-	{
-		$state.go('app.editar_consumo',{id: id})
+	$scope.editar_registro = function(vid){
+		$state.go('app.editar_consumo',{'pid': vid})
 	};
 	
 	$scope.quitar_consumo = function(consumo) 
@@ -107,6 +105,9 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 .controller('editar_consumoCtrl', function($scope,$state,$stateParams) 
 {
 	$scope.lista_consumo = [];
+	var pid = $stateParams.pid;
+   
+	console.log("pid=["+pid+"]");
 	
 	$scope.select = function(id) {
 		var query = "SELECT id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon FROM consumo WHERE id = ?";
@@ -120,6 +121,8 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 			alert("Error: "+err);
 		});
 	};
+	
+	//$scope.select($stateParams[0]);	
 		
 	$scope.consumo = {
 		'id' : 0,
