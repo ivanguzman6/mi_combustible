@@ -104,8 +104,9 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
       views: {
         'menuContent' :{
           templateUrl: "template/editar_consumo.html",
-          controller: 'editar_consumoCtrl',
-		  params: {'pid': null}
+		  params: {'pid': null},
+          controller: 'editar_consumoCtrl'
+		  
         }
      }
 	});
