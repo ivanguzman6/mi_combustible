@@ -100,11 +100,10 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
 	})
 	
 	.state('app.editar_consumo', {
-      url: "/editar_consumo",
+      url: "/editar_consumo/:id",
       views: {
         'menuContent' :{
           templateUrl: "template/editar_consumo.html",
-		  params: {'pid': null},
           controller: 'editar_consumoCtrl'
 		  
         }
@@ -120,7 +119,7 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
 
 	
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/app/registro_consumo');
+	$urlRouterProvider.otherwise('/app/historial_consumo');
   
   
 });

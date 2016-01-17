@@ -31,7 +31,6 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
 	$scope.crear_consumo = function(consumo) 
 	{
-		alert("fecha="+consumo.fecha_consumo);
 		consumos.add(consumo);
 		$scope.actualizar_consumo();
 	};
@@ -89,7 +88,7 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 	$scope.actualizar_consumo();
 	
 	$scope.editar_registro = function(vid){
-		$state.go('app.editar_consumo',{'pid': vid})
+		$state.go('app.editar_consumo',{pid: vid})
 	};
 	
 	$scope.quitar_consumo = function(consumo) 
@@ -102,38 +101,24 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 	
 })
 
-.controller('editar_consumoCtrl', function($scope,$state,$stateParams) 
+.controller('editar_consumoCtrl', function($scope,$state,$ionicPlatform,$stateParams,consumos) 
 {
-	$scope.lista_consumo = [];
-	var pid = $stateParams.pid;
-   
-	console.log("pid=["+pid+"]");
+	 $ionicPlatform.ready(function() {
+	 
+	var id =  $stateParams.id;
 	
-	$scope.select = function(id) {
-		var query = "SELECT id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon FROM consumo WHERE id = ?";
-		$cordovaSQLite.execute(db, query, [id]).then(function(res) {
-			if(res.rows.length > 0) {
-				alert("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
-			} else {
-				alert("No results found");
-			}
-		}, function (err) {
-			alert("Error: "+err);
-		});
-	};
+	console.log("id=["+ $stateParams.id+"]");
+	});
+	// $scope.consumos = [];
+	// $scope.consumos = null;
 	
-	//$scope.select($stateParams[0]);	
+	// consumos.get(id).then(function(consumo)
+		// {
+			  // $scope.consumos = consumo;
+		// });
+	
+	//$scope.select(id);	
 		
-	$scope.consumo = {
-		'id' : 0,
-		'fecha_consumo' : "",
-		'kilometraje' : 0,
-		'monto_consumo': 0,
-		'galones_consumo' : 0,
-		'precio_galon' : 0
-	};  
-	
-	
 })
 
 
