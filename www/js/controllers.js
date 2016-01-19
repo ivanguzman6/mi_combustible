@@ -88,7 +88,7 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 	$scope.actualizar_consumo();
 	
 	$scope.editar_registro = function(vid){
-		$state.go('app.editar_consumo',{pid: vid})
+		$state.go('app.editar_consumo',{id: vid})
 	};
 	
 	$scope.quitar_consumo = function(consumo) 
@@ -103,21 +103,37 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
 .controller('editar_consumoCtrl', function($scope,$state,$ionicPlatform,$stateParams,consumos) 
 {
-	 $ionicPlatform.ready(function() {
-	 
-	var id =  $stateParams.id;
+	var id=0;
 	
-	console.log("id=["+ $stateParams.id+"]");
+	$ionicPlatform.ready(function() {
+		id =  $stateParams.id;
+		$scope.consumos = [];
+		$scope.consumos = null;
+		
+		$scope.consumo = {
+			'id' : 0,
+			'fecha_consumo' : "",
+			'kilometraje' : 0,
+			'monto_consumo': 0,
+			'galones_consumo' : 0,
+			'precio_galon' : 0
+		}; 
+	
+		$scope.actualizar_consumo = function() 
+		{
+			consumos.get(id).then(function(consumo)
+			{
+				console.log(consumo.id);
+				$scope.consumo = consumo;
+				
+			});
+		};
+		
+		
+		$scope.actualizar_consumo();	
+	
 	});
-	// $scope.consumos = [];
-	// $scope.consumos = null;
 	
-	// consumos.get(id).then(function(consumo)
-		// {
-			  // $scope.consumos = consumo;
-		// });
-	
-	//$scope.select(id);	
 		
 })
 
