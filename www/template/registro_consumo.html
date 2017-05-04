@@ -8,7 +8,7 @@
             </label>
 			<label class="item item-input" name="fecha_consumo">
                 <span class="input-label">Fecha Consumo</span>
-                <input type="date" class="form-control" placeholder="Cantidad de km" placeholder="" ng-model="consumo.fecha_consumo" min="1900-01-01" max="2100-12-31" required
+                <input type="date" class="form-control" placeholder="Fecha de consumo" ng-model="consumo.fecha_consumo" min="1900-01-01" max="2100-12-31" required
 				ng-class="{ error: registro_consumo.fecha_consumo.$error.required && !registro_consumo.$pristine, warning: registro_consumo.fecha_consumo.$error.fecha_consumo }"
 				date-field 
 				>

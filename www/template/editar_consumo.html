@@ -7,36 +7,13 @@
                 {{consumo.id}}
             </label>
 			
-			
-			<div class="row">
-				<div class="col">
-					<label class="item item-input" name="fecha_consumo_dia">
-						<span class="input-label">Fecha Consumo</span>
-					</label>
-				</div>
-				<div class="col">
-					<label class="item item-input" name="fecha_consumo_dia">
-						<input type="number" class="form-control" placeholder="D&iacute;a" ng-model="fecha_consumo_dia" min="1" max="31" required
-							ng-class="{ error: registro_consumo.fecha_consumo_mes.$error.required && !registro_consumo.$pristine, warning: registro_consumo.fecha_consumo_mes.$error.fecha_consumo_mes }">
-					</label>
-				</div>
-				
-				<div class="col">
-					<label class="item item-input" name="fecha_consumo_dia">
-						<input type="number" class="form-control" placeholder="Mes" ng-model="fecha_consumo_mes" min="1" max="12" required
-						ng-class="{ error: registro_consumo.fecha_consumo_mes.$error.required && !registro_consumo.$pristine, warning: registro_consumo.fecha_consumo_mes.$error.fecha_consumo_mes }">
-					</label>
-				</div>
-				
-				<div class="col">
-					<label class="item item-input" name="fecha_consumo_dia">
-					<input type="number" class="form-control" placeholder="A&nacute;o" ng-model="fecha_consumo_ano" min="1900" max="2100" required
-						ng-class="{ error: registro_consumo.fecha_consumo_ano.$error.required && !registro_consumo.$pristine, warning: registro_consumo.fecha_consumo_ano.$error.fecha_consumo_ano }">
-					</label>
-				</div>
-			</div>
-			
-
+			<label class="item item-input" name="fecha_consumo">
+                <span class="input-label">Fecha Consumo</span>
+                <input type="text" datetime="dd-MM-yyyy" class="form-control" placeholder="Fecha de Consumo" ng-model="consumo.fecha_consumo" min="1900-01-01" max="2100-12-31" required
+				ng-class="{ error: registro_consumo.fecha_consumo.$error.required && !registro_consumo.$pristine, warning: registro_consumo.fecha_consumo.$error.fecha_consumo }"
+				date-field 
+				>
+            </label>
             <label class="item item-input" name="kilometraje">
                 <span class="input-label">Kilometraje</span>
                 <input type="number" class="form-control" placeholder="Cantidad de km" ng-model="consumo.kilometraje" 
