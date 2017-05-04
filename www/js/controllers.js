@@ -1,7 +1,7 @@
 angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 
 
-.controller('registro_consumoCtrl', function($scope,consumos) 
+.controller('registro_consumoCtrl', function($scope,consumos,$state) 
 {
 
 	// if($stateParams.id!=null)
@@ -33,6 +33,7 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 	{
 		consumos.add(consumo);
 		$scope.actualizar_consumo();
+		$state.go('app.historial_consumo')
 	};
 
 	$scope.quitar_consumo = function(consumo) 
@@ -104,12 +105,15 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 .controller('editar_consumoCtrl', function($scope,$state,$ionicPlatform,$stateParams,consumos) 
 {
 	var id=0;
+	$scope.fecha_consumo_dia = 0;
+	$scope.fecha_consumo_mes = 0;
+	$scope.fecha_consumo_ano = 0;
 	
 	$ionicPlatform.ready(function() {
 		id =  $stateParams.id;
 		$scope.consumos = [];
 		$scope.consumos = null;
-		
+
 		$scope.consumo = {
 			'id' : 0,
 			'fecha_consumo' : "",

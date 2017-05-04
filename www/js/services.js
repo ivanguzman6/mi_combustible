@@ -70,7 +70,6 @@ angular.module('ionic.utils', [])
 	 var parameters = [0];
     return DBA.query("SELECT id,fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon FROM consumos where id>= (?)",parameters)
       .then(function(result){
-	  console.warn('setall');
         return DBA.getAll(result);
       });
   }
@@ -85,7 +84,8 @@ angular.module('ionic.utils', [])
 
   self.add = function(consumo) {
     var parameters = [consumo.fecha_consumo,consumo.kilometraje,consumo.monto_consumo,consumo.galones_consumo,consumo.precio_galon];
-    return DBA.query("INSERT INTO consumos (fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon) VALUES (?,?,?,?,?)", parameters);
+    return DBA.query("INSERT INTO consumos (fecha_consumo,kilometraje,monto_consumo,galones_consumo,precio_galon) VALUES (?,?,?,?,?)", parameters)
+	window.alert("sometext");
   }
 
   self.remove = function(consumo) {

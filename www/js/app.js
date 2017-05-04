@@ -10,7 +10,7 @@
 
 var db=null;
  
-angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.services','ngCordova','pickadate'])
+angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.services','ngCordova'])
 .run(function($ionicPlatform, $cordovaSQLite,$ionicLoading, $location, $ionicHistory) {
    $ionicHistory.nextViewOptions({
         disableAnimate: true,
