@@ -28,14 +28,23 @@ angular.module('mi_consumo.controllers', ['ionic', 'ionic.utils'])
 	}
 	
 	$scope.actualizar_consumo();	
-
+	
+	$scope.convertDate = function(inputFormat) {
+	  function pad(s) { return (s < 10) ? '0' + s : s; }
+	  var d = new Date(inputFormat);
+	  return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+	}
+	
 	$scope.crear_consumo = function(consumo) 
 	{
+		consumo.fecha_consumo=$scope.convertDate(consumo.fecha_consumo);
 		consumos.add(consumo);
 		$scope.actualizar_consumo();
 		$state.go('app.historial_consumo')
 	};
 
+	
+	
 	$scope.quitar_consumo = function(consumo) 
 	{
 		consumos.remove(consumo);

@@ -56,7 +56,7 @@ angular.module('mi_consumo', ['ionic', 'mi_consumo.controllers', 'mi_consumo.ser
 
 	
 	//db = $cordovaSQLite.openDB("consumo.db");
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS consumos (id integer primary key, fecha_consumo date, kilometraje integer,monto_consumo numeric,galones_consumo numeric,precio_galon numeric )");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS consumos (id integer primary key, fecha_consumo text, kilometraje integer,monto_consumo numeric,galones_consumo numeric,precio_galon numeric )");
 	
   }, function (error) {
 		console.log(error);
